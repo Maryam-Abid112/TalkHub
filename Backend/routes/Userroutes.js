@@ -10,7 +10,7 @@ router.post("/register", registerUser);
 // Login
 router.post("/login", loginUser);
 
-router.get("/getalluser",alluser);
+router.get("/getalluser",protect,alluser);
 
 
 router.put("/update",protect,update);

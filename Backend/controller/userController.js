@@ -7,7 +7,7 @@ const bcrypt = require("bcryptjs");
 // JWT token
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
-        expiresIn: 200,
+        expiresIn: "1d",
     });
 };
 

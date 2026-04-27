@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios"; 
 import "./signup.css";
 
 const SignIn = () => {
+  const navigate=useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async(e) => {
+    let success=false;
     e.preventDefault();
     console.log("Email:", email);
     console.log("Password:", password);
@@ -16,15 +19,20 @@ const SignIn = () => {
         password:password
       });
       // saves the token to localstorage for further use
-      localStorage.setItem("Token",JSON.stringify(res.data.token));
+      localStorage.setItem("token", res.data.token);
       console.log("response",res.data);
+      success=true;
+
+    
 
     }catch(error){
         console.log("error log in ", error);
 
     }
-    
+      if(success){
+        navigate("/Dashboard");
 
+      }
   };
 
   return (
@@ -53,6 +61,7 @@ const SignIn = () => {
         <button type="submit" className="button">
           Login
         </button>
+        <p>Don't have a Account? <span><Link to="/signup">Signup</Link></span></p>
       </form>
     </div>
   );

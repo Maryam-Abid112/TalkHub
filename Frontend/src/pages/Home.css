@@ -1,0 +1,110 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #0f1422;
+  font-family: Arial, sans-serif;
+}
+
+.home-container {
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10%;
+  color: white;
+}
+
+.logo{
+ font-size: 50px;
+  font-weight: bold;
+   color: #7c5cff;
+   margin-bottom: 60px;
+
+}
+/* LEFT */
+.home-left {
+  max-width: 500px;
+}
+
+.title {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+
+.subtitle {
+  margin-top: 15px;
+  color: #b5bcd6;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* BUTTONS */
+.btn-group {
+  margin-top: 25px;
+  display: flex;
+  gap: 15px;
+}
+
+.btn {
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.primary {
+  background: #7c5cff;
+  color: white;
+}
+
+.primary:hover {
+  background: #6a4df0;
+}
+
+.secondary {
+  border: 1px solid #7c5cff;
+  color: #7c5cff;
+}
+
+.secondary:hover {
+  background: #7c5cff;
+  color: white;
+}
+
+/* RIGHT PREVIEW */
+.home-right {
+  width: 350px;
+}
+
+.preview-card {
+  background: #1b2236;
+  padding: 20px;
+  border-radius: 15px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.chat-bubble {
+  padding: 10px 15px;
+  border-radius: 12px;
+  width: fit-content;
+  max-width: 80%;
+}
+
+.left {
+  background: #111827;
+  align-self: flex-start;
+  color: #fff;
+}
+
+.right {
+  background: #7c5cff;
+  align-self: flex-end;
+  color: white;
+}
