@@ -1,15 +1,36 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios";
+ import { io } from "socket.io-client";
 
 
 export default function Dash() {
+
   const navigate = useNavigate();
   // search bar data
   const [search, setsearch] = useState("");
   const [userlist, setuserlist] = useState([]);
   const [username, setusername] = useState("");
   const [userid, setuserid] = useState();
+
+  //one time calling the connection
+  useEffect(() => {
+   const socket = io("http://localhost:5001", {
+      auth: {
+         token: localStorage.getItem("token")
+      }
+   });
+
+   socket.on("connect", () => {
+      console.log("Connected:", socket.id);
+   });
+
+   socket.on("connect_error", (err) => {
+   console.log("Connection Error:", err.message);}
+   );
+   return () => socket.disconnect();
+}, []);
+
   const searchbar = async (e) => {
     try {
       const token = localStorage.getItem("token");

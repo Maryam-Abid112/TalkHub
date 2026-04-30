@@ -5,6 +5,8 @@ const cors = require("cors");
 const connectDB= require("./config/db");
 const dotenv = require("dotenv");
 const userroute=require("./routes/Userroutes");
+const socketauth=require("./middleauth/socketauth");
+const sockethadler =require("./socket/sockethandler");
 
 dotenv.config();
 const app = express();
@@ -20,26 +22,21 @@ app.get("/", (req, res) => {
   res.send("API Running...");
 });
 
+// creating http server
 const server = http.createServer(app);
 
+//creating  socket io server
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: "http://localhost:5173",// to connect to the react frontend 
     methods: ["GET", "POST"]
   }
 });
 
-io.on("connection", (socket) => {
-  console.log("User connected:", socket.id);
-
-  socket.on("send_message", (data) => {
-    io.emit("receive_message", data);
-  });
-
-  socket.on("disconnect", () => {
-    console.log("User disconnected");
-  });
-});
+// checking that whether the token expired or not and assigning it the user id
+io.use(socketauth);
+// passing the connnection to socket handler to work on it 
+sockethadler(io);
 
 
 
